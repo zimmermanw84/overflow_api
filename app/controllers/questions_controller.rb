@@ -1,9 +1,13 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :update, :destroy]
+  before_action :set_question, only: [ :show, :update, :destroy]
+
+  before_action :set_headers
+
 
   # GET /questions
   # GET /questions.json
   def index
+
     @questions = Question.all
 
     render json: @questions
@@ -18,8 +22,8 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
 
+    @question = Question.new(question_params)
     if @question.save
       render json: @question, status: :created, location: @question
     else
@@ -49,11 +53,11 @@ class QuestionsController < ApplicationController
 
   private
 
-    def set_question
-      @question = Question.find(params[:id])
-    end
+  def set_question
+    @question = Question.find(params[:id])
+  end
 
-    def question_params
-      params.require(:question).permit(:title, :content)
-    end
+  def question_params
+    params.require(:question).permit(:title, :content)
+  end
 end
