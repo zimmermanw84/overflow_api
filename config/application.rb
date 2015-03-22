@@ -22,5 +22,9 @@ module OverflowApi
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+  #   allow do
+  #   origins 'localhost:3000'
+  #   resource '*', headers: :any, methods: %i(get post delete)
+  # end
   end
 end

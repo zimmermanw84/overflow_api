@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [ :show, :update, :destroy]
 
-  before_action :set_headers
-
+  before_filter :set_headers
+  after_filter :set_headers
 
   # GET /questions
   # GET /questions.json
@@ -46,18 +46,19 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    @question.destroy
 
-    head :no_content
-  end
+   @question.destroy
 
-  private
+   head :no_content
+ end
 
-  def set_question
-    @question = Question.find(params[:id])
-  end
+ private
 
-  def question_params
-    params.require(:question).permit(:title, :content)
-  end
+ def set_question
+  @question = Question.find(params[:id])
+end
+
+def question_params
+  params.require(:question).permit(:title, :content)
+end
 end
