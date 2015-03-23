@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [ :show, :update, :destroy]
+  before_filter :handle_options_request
 
-  before_filter :set_headers
-  after_filter :set_headers
+  # after_filter :set_headers
 
   # GET /questions
   # GET /questions.json
